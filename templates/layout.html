@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Déboucheur - {% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/styles/css.css">
+        {% endblock %}
+    </head>
+    <body id="body" data-page="{{request.path.split('/')[1]}}">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header>
+            <div class="bar">
+                <div class="back"></div>
+                <div class="logo">
+                    <img src="/static/logo.png" alt="logo" id="logo">
+                </div>
+                <nav class="" id="navbar">
+                    <ul>
+                        <a href="{{url_for('home')}}" class="header_link">Accueil</a>
+                        <a href="{{url_for('articles')}}"class="header_link">Articles</a>
+                        <a href="{{url_for('about')}}" class="header_link">Nos services</a>
+                    </ul>
+                </nav>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+                <!--Contact-->
+                <section class="contact">
+                    <img src="/static/logo.png" alt="" class="logo invert">
+                    <div class="links">
+                        <a href="http://heanlab.com">Support</a>
+                        <a href="{{url_for('about')}}">A Propos</a>
+                        <a href="{{url_for('articles')}}">Articles</a>
+                    </div>
+                    <div class="social">
+                        <a href="http://heanlab.com"><img src="/static/facebook.svg" alt="facebook"></a>
+                        <a href="http://heanlab.com"><img src="/static/instagram.svg" alt="twitter"></a>
+                        <a href="mailto:jhubert@heanlab.com"><img src="/static/mail.svg" alt="instagram"></a>
+                    </div>
+                </section>
+        
+               <section class="end">
+                      <div class="end-text">
+                        © 2023 DéboucheurXpress. All rights reserved.
+                      </div>
+                      <div class="links">
+                        <a href="http://heanlab.com">Terms</a>
+                        <a href="http://heanlab.com">Privacy</a>
+                        <a href="http://heanlab.com">Cookies</a>
+                      </div>
+               </section>
+
+        <footer>Created by **REMOVED**. Check more at <a href="http://heanlab.com"> heanlab.com</a></footer>
+        <script src="/static/js.js" async defer></script>
+    </body>
+</html>

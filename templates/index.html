@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+    {{ super() }}
+           <!--Pages-->
+           <section class="container-home">
+            <div class="video" id="video">
+                <video autoplay loop muted playsinline>
+                    <source src="/static/vid1.mp4" type="video/mp4" />
+                </video>
+                   
+            </div>
+            <div class="presentation">
+                <h1>Travaillez avec les plus expérimentés</h1>
+                <p>
+                    Votre déboucheur à Bruxelles et dans le Brabant Wallon
+                </p>
+                <button class="btn">Contactez-nous</button>
+            </div>
+           </section>
+
+           <!--Reviews-->
+           <div class="title">
+            <h2>Des avis clients positifs</h2>
+            <p>Notre équipe est fière de son travail et de la satisfaction de ses clients. Nous sommes heureux de partager avec vous les avis de nos clients.</p>
+            </div>
+           <section id="reviews">
+            <!--Avis-->
+            
+                <div class="review">
+                    <div class="review-text">
+                        <p>John Doe</p>
+                        <p>“J'ai fait appel à DéboucheurXpress pour un débouchage de canalisation. Ils sont intervenus rapidement et ont fait un travail impeccable. Je recommande vivement !”</p>
+                    </div>
+                    <div class="review-author">
+                        <img src="/static/avatar.jpg" alt="avatar">
+                        
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-text">
+                        <p>John Doe</p>
+                        <p>“J'ai fait appel à DéboucheurXpress pour un débouchage de canalisation. Ils sont intervenus rapidement et ont fait un travail impeccable. Je recommande vivement !”</p>
+                    </div>
+                    <div class="review-author">
+                        <img src="/static/avatar2.jpg" alt="avatar">
+                        
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-text">
+                        <p>John Doe</p>
+                        <p>“J'ai fait appel à DéboucheurXpress pour un débouchage de canalisation. Ils sont intervenus rapidement et ont fait un travail impeccable. Je recommande vivement !”</p>
+                    </div>
+                    <div class="review-author">
+                        <img src="/static/avatar3.jpg" alt="avatar">
+                    </div>
+                </div>
+           </section>
+           
+        <main id="articles">
+            <section class="head">
+                <h1>Articles récents</h1>
+                <a href="{{url_for('articles')}}" class="see_more">Voir plus</a>
+            </section>
+            <section class="list">
+                {% for item in articles %}
+                <a class="article" href="{{url_for('article', id=item.id)}}">
+                    <img src="/static/{{item.illustration}}" alt="">
+                    <div class="rank">
+                        <span class="rank_number">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
+                                <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"/>
+                              </svg>
+                            {{item.note}}
+                        </span>
+                        <span class="days">{{item.date}}</span>
+                    </div>
+                    <div class="title">
+                        {{ item.title }}
+                    </div>
+                    <span class="category">{{ item.category }}</span>
+                </a>
+                {% endfor %}
+            </section>
+        </main>
+    
+             <!--Services-->
+            <div class="title">
+                <h2>Explorez nos services</h2>
+            </div>
+            <section class="services">
+                <img src="/static/team.jpg" alt="" class="div1">
+                <div class="div2">
+                    <h2>Débouchage</h2>
+                    <p>Notre équipe de plombiers est spécialisée dans le débouchage de canalisations. Nous intervenons rapidement et efficacement pour déboucher vos canalisations.</p>
+                </div>
+                <img src="/static/camera_inspection.jpg" alt="" class="div3">
+                <div class="div4">
+                    <h2>Inspection</h2>
+                    <p>Notre équipe de plombiers est spécialisée dans le débouchage de canalisations. Nous intervenons rapidement et efficacement pour déboucher vos canalisations.</p>
+                </div>
+                <a href="{{url_for('about')}}" class="see_more">Voir plus</a>
+            </section>
+{% endblock %}

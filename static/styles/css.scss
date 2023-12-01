@@ -278,12 +278,13 @@ body{
             flex-direction: row;
             justify-content: left;
             align-items: center;
+           // background-color: rgba(58, 58, 58, 0.829);
             margin: 0;
             padding: 0;
             height: max-content;
-            gap: 10px;
-            overflow: auto;
+            overflow: hidden;
             margin-bottom: -20px;
+            gap: 0px;
             h1{
                 font-size: calc(1rem + 2vw);
                 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
@@ -293,13 +294,14 @@ body{
                 display: flex;
                 flex-direction: column;
                 position: relative;
-                justify-content: center;
+                justify-content: left;
                 align-items: center;
                 margin: 0;
                 padding: 0;
-               
-                width: calc(40vw + 50px);
-                height: 300px;
+                
+                width: 250px;
+                height: max-content;
+                transform: translateX(0px);
                 .review-text{
                     width: 90%;
                     display: flex;
@@ -308,40 +310,64 @@ body{
                     align-items: baseline;
                     margin: 0;
                     padding: 0;
-                    position: absolute;
-                    color: whitesmoke;
+                    position: relative;
+                    color: rgb(0, 0, 0);
                     z-index: 10;
+                    text-overflow: ellipsis;
                     :first-child{
-                        color: rgb(241, 241, 241);
+                        color: rgb(0, 0, 0);
                         font-weight: 900;
                         height: 100%;
             
                     }
-                    :nth-child(2){
-                        color: whitesmoke;
-                        font-weight: 400;
+                    :nth-child(3){
+                        color: gray;
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+                        font-weight: 200;
                         padding-bottom: 5px;
                         font-size: 10px;
+                        
+                    }
+                    p{
+                        margin: 0;
+                        padding: 0;
+                        max-height: 50px;
+                        text-overflow: ellipsis;
+                        z-index: -1;
+                    }
+                    .stars{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: left;
+                        align-items: center;
+                        gap: 5px;
+                        svg{
+                            color: rgb(255, 166, 0);
+                        }
+                    
                     }
                 }
                 .review-author{
                     display: flex;
+                    position: relative;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     margin: 0;
                     padding: 0;
                     object-fit: cover;
-                    width: calc(40vw + 50px);
+                    width: 250px;
+                    height: 200px;
                     border-radius: 20px;
                     overflow: hidden;
 
                     img{
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
+                        width: 200px;
+                        height: 200px;
+                        object-fit: contain;
                         border-radius: 2rem;
-                        filter: brightness(0.5);
+                        z-index: 3;
                     }
                 }
             }
@@ -382,66 +408,85 @@ body{
         }
     }
 
-    .services{
+    .service_carrousel{
+        position: relative;
+        background-color: rgb(45, 45, 45);
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column; 
-        justify-content: center;
-        padding-inline: 4vw;
+        align-content: start;
+        background-color: #181818;
         margin-bottom: 100px;
-        .service{
-            display: flex;
-            flex-direction: column;
+        .btns{
             padding: 0px;
             margin: 0px;
-            gap: 0px;
-            .service-icon{
-            
-                padding: 0px;
+            width: 100vw;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            border-style: none;
+            border-color: transparent;
+            z-index: 2;
+            .btn-right{
+                height: 100%;
+                border-radius: 0px 0px 0px 0px;
+                background: inherit;
                 margin: 0px;
-                img{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 0.8rem;
-                
+                padding: 0px;
+                backdrop-filter: blur(10px);
+                //for safary
+                -webkit-backdrop-filter: blur(10px);
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                z-index: -1;
+                svg{
+                    background-color: #eaeaea;
+                    width: 70px;
+                    height: 70px;
                 }
             }
-            .service-text{
-                padding: 0px;
-                margin: 0px;
+            .btn-left{
+                height: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                gap: 0px;
+                align-self: flex-end;
+                right: 0px;
+                margin: 0px;
                 padding: 0px;
-                font-family: 'Source Sans 3', sans-serif;
-                h3{
-                    font-size: calc(1rem + 2vw);
-                    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-                    margin: 0;
-                    padding: 0;
-                    font-family: 'Source Sans 3', sans-serif;
-                }
-                p{
-                    font-size: calc(0.5rem + 1vw);
-                    color: grey;
-                    margin: 0;
-                    padding: 0px;
-                   
+                backdrop-filter: blur(10px);
+                //for safary
+                -webkit-backdrop-filter: blur(10px);
+                svg{
+                    background-color: #eaeaea;
+                    width: 70px;
+                    height: 70px;
                 }
             }
         }
-        a{
-            text-decoration: none;
-            color: rgb(96, 96, 96);
-            transition: all 0.2s ease-in-out;
-            font-family: 'Source Sans 3', sans-serif;
-            &:hover{
-                color: rgb(0, 0, 0, 0.5);
-                text-decoration: underline;
-            }
         
+        .service_carrousel_container{
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            overflow-y: auto;
+            
+            .service_carrousel_item{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                .service_carrousel_text{
+                    margin-inline: 20px;
+                    color: white;
+                    z-index: 60;
+                }
+            }
         }
     }
 
@@ -901,10 +946,10 @@ body{
                 justify-self: center;
                 object-fit: cover;
             }
-            .div1 { grid-area: 1 / 1 / 2 / 2; text-align: justify;}
-            .div2 { grid-area: 2 / 2 / 2 / 3; text-align: justify;}
-            .div3 { grid-area: 3 / 1 / 4 / 2; text-align: justify;}
-            .div4 { grid-area: 4 / 2 / 5 / 3;text-align: justify; }
+            .div1 { grid-area: 1 / 1 / 2 / 2; text-align: left;}
+            .div2 { grid-area: 2 / 2 / 2 / 3; text-align: left;}
+            .div3 { grid-area: 3 / 1 / 4 / 2; text-align: left;}
+            .div4 { grid-area: 4 / 2 / 5 / 3;text-align: left; }
             .div5 { grid-area: 1 / 2 / 2 / 3;}
             .div6 { grid-area: 2 / 1 / 3 / 2; }
             .div7 { grid-area: 3 / 2 / 4 / 3; }

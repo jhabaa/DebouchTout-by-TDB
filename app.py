@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, Request
+import csv
 
 app = Flask(__name__)
 
@@ -14,6 +15,19 @@ class Article:
         self.intro = intro
         self.category = category
         self.illustration = illustration
+
+#Object Service
+class Service:
+    def __init__(self, title, resume, illustration, content, faq) -> None:
+        self.id = id
+        self.title = title
+        self.resume = resume
+        self.illustration = illustration
+        self.content = content
+        self.faq = faq
+
+
+
 
 #List of articles
 articles_list = [
@@ -104,6 +118,25 @@ articles_list = [
 
 ]
 
+#store as csv file
+def articles_to_csv():
+    with open('articles.csv', mode='w+') as database:
+        csv_writer = csv.writer(database, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow(["identifiant","title", "content", "author", "date", "note","intro", "category", "illustration"])
+        for article in articles_list:
+            csv_writer.writerow([article.id, article.title, article.content, article.author, article.date, article.note, article.intro, article.category, article.illustration])
+        
+
+def init_services_csv():
+    with open('services.csv', mode='w+') as database:
+        csv_writer = csv.writer(database, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        #header
+        csv_writer.writerow(['id','title', 'resume', 'illustration', 'content', 'faq'])
+
+
+
+articles_to_csv()
+init_services_csv()
 
 @app.route('/')
 def index():

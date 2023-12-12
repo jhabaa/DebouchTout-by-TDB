@@ -14,6 +14,10 @@ let service_carrousel = document.querySelector('.service_carrousel');
 let carrousel_right_btn = document.querySelector('#btn-right');
 let carrousel_left_btn = document.querySelector('#btn-left');
 let carrousel = document.querySelector('#carrousel-1');
+
+//INIT AOS
+AOS.init(); 
+
 //reviews
 let reviews = document.querySelectorAll('.review');
 if (current_page == "article") {

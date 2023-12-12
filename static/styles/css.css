@@ -9,6 +9,7 @@ body {
   font-family: "Open Sans", sans-serif;
   overflow-x: hidden;
   background: inherit;
+  user-select: none;
 }
 body .container {
   display: flex;
@@ -37,7 +38,7 @@ body .fond img {
   background-color: rgb(63, 63, 255);
 }
 body header {
-  z-index: 5;
+  z-index: 50;
   position: fixed;
   width: 100%;
   background: inherit;
@@ -274,12 +275,11 @@ body #reviews .review {
   align-items: center;
   margin: 50px;
   padding: 0;
-  width: 250px;
   height: max-content;
   transform: translateX(0px);
 }
 body #reviews .review .review-text {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -295,6 +295,7 @@ body #reviews .review .review-text :first-child {
   color: rgb(0, 0, 0);
   font-weight: 900;
   height: 100%;
+  text-align: center;
 }
 body #reviews .review .review-text :nth-child(3) {
   color: gray;
@@ -318,7 +319,7 @@ body #reviews .review .review-text .stars {
   gap: 5px;
 }
 body #reviews .review .review-text .stars svg {
-  color: rgb(255, 166, 0);
+  color: rgb(255, 255, 255);
 }
 body #reviews .review .review-author {
   display: flex;
@@ -329,45 +330,53 @@ body #reviews .review .review-author {
   margin: 0;
   padding: 0;
   object-fit: cover;
-  width: 250px;
-  height: 200px;
   border-radius: 20px;
   overflow: hidden;
 }
 body #reviews .review .review-author img {
-  width: 100%;
+  width: 300;
+  height: 400px;
   object-fit: cover;
   border-radius: 2rem;
   z-index: 3;
 }
 @media screen and (min-width: 768px) {
   body #reviews .review {
-    width: 300px;
-    height: 400px;
-    padding-inline: 50px;
-    color: #eaeaea;
-    margin: 50px;
+    margin-inline: 50px;
+    position: relative;
   }
   body #reviews .review .review-text {
+    position: absolute;
     color: #eaeaea;
     width: 100%;
-    background-color: aqua;
+    margin: 15px;
+  }
+  body #reviews .review .review-text :first-child {
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    height: 100%;
   }
   body #reviews .review .review-text :nth-child(3) {
     color: whitesmoke;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    width: 100%;
     font-weight: 200;
     padding-bottom: 5px;
-    font-size: 10px;
+    font-size: 20px;
+    text-shadow: #181818 2px;
+    padding-inline: 10px;
   }
-  body #reviews .review .review-author {
-    position: absolute;
-    height: 300px;
+  body #reviews .review .review-text p {
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    z-index: -1;
   }
   body #reviews .review .review-author img {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    height: 450px;
+    width: 300px;
+    object-fit: cover;
+    filter: brightness(0.5);
   }
 }
 body .articles {
@@ -404,32 +413,31 @@ body .articles .article .title {
 }
 body .service_carrousel {
   position: relative;
-  background-color: rgb(45, 45, 45);
   overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   display: flex;
   align-content: start;
   background-color: #181818;
   margin-bottom: 100px;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
 }
-body .service_carrousel .btns {
-  padding: 0px;
-  margin: 0px;
-  width: 100vw;
-  height: 100%;
-  position: absolute;
+body .service_carrousel .service_carrousel_container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border: none;
-  border-style: none;
-  border-color: transparent;
-  z-index: 2;
+  justify-content: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.2s ease-in-out;
+  max-width: 800px;
+  position: relative;
 }
-body .service_carrousel .btns .btn-right {
+body .service_carrousel .service_carrousel_container .btn-right {
   height: 100%;
+  left: 0px;
+  position: absolute;
   border-radius: 0px 0px 0px 0px;
   background: inherit;
   margin: 0px;
@@ -437,17 +445,20 @@ body .service_carrousel .btns .btn-right {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   justify-content: center;
+  align-items: center;
+  align-content: center;
   display: flex;
   flex-direction: column;
-  z-index: -1;
+  z-index: 100;
 }
-body .service_carrousel .btns .btn-right svg {
+body .service_carrousel .service_carrousel_container .btn-right svg {
   background-color: #eaeaea;
   width: 70px;
   height: 70px;
 }
-body .service_carrousel .btns .btn-left {
+body .service_carrousel .service_carrousel_container .btn-left {
   height: 100%;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -458,26 +469,22 @@ body .service_carrousel .btns .btn-left {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
-body .service_carrousel .btns .btn-left svg {
+body .service_carrousel .service_carrousel_container .btn-left svg {
   background-color: #eaeaea;
   width: 70px;
   height: 70px;
-}
-body .service_carrousel .service_carrousel_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  overflow-y: auto;
 }
 body .service_carrousel .service_carrousel_container .service_carrousel_item {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 800px;
+  transition: all 0.2s ease-in-out;
 }
 body .service_carrousel .service_carrousel_container .service_carrousel_item .service_carrousel_text {
   margin-inline: 20px;
   color: white;
-  z-index: 60;
+  z-index: 150;
 }
 body .contact {
   display: flex;
@@ -591,9 +598,19 @@ body #articles {
   background-color: rgb(241, 241, 241);
   margin-inline: 0px;
   padding-inline: 0px;
-  padding-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-bottom: 60px;
   text-decoration: none;
+  position: relative;
+}
+body #articles .ventouse {
+  width: 500px;
+  align-self: center;
+  justify-self: center;
+  position: absolute;
+  z-index: 10;
 }
 body #articles a {
   text-decoration: none;
@@ -609,9 +626,14 @@ body #articles a:hover {
 body #articles .head {
   display: flex;
   align-items: center;
+  width: 100%;
+  max-width: 700px;
   padding: 0px;
   margin-inline: 20px;
   justify-content: space-between;
+  z-index: 11;
+  position: absolute;
+  top: 0px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 body #articles .head h1 {
@@ -620,8 +642,16 @@ body #articles .head h1 {
 body #articles .head span {
   color: grey;
 }
+body #articles .head.page {
+  position: relative;
+  margin-top: 150px;
+}
+body #articles .head.second {
+  margin-top: 0px;
+}
 body #articles .list {
   display: flex;
+  position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-y: auto;
@@ -630,13 +660,18 @@ body #articles .list {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   padding-inline: 20px;
+  z-index: 11;
+  margin-top: 300px;
+}
+body #articles .list.page {
+  margin-top: 0px;
 }
 body #articles .list::-webkit-scrollbar { /* WebKit */
   width: 0;
   height: 0;
 }
-body #articles .list.vertical {
-  flex-direction: column;
+body #articles .list :nth-child(2) {
+  margin-top: 150px;
 }
 body #articles .list .article {
   display: flex;
@@ -648,6 +683,11 @@ body #articles .list .article {
   background-color: white;
   border-radius: 1.2rem;
   padding: 5px;
+  height: fit-content;
+  max-height: fit-content;
+}
+body #articles .list .article :nth-child(2) {
+  margin-top: 0px;
 }
 body #articles .list .article img {
   border-radius: 1rem;
@@ -736,6 +776,13 @@ body #articles .list .article .category {
   color: white;
   border-radius: 0.5rem;
 }
+body #articles .list.vertical {
+  flex-direction: column;
+  margin-top: 0px;
+}
+body #articles .list.vertical :nth-child(2) {
+  margin-top: 0px;
+}
 body #details_article {
   background-color: whitesmoke;
 }
@@ -743,9 +790,10 @@ body #details_article #article_background {
   padding: 0px;
   margin: 0px;
   width: 100%;
+  height: 100vh;
   position: fixed;
   z-index: 1;
-  object-fit: contain;
+  object-fit: cover;
 }
 body #details_article #article_background::before {
   content: " ";

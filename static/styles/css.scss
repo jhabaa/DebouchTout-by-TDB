@@ -9,6 +9,7 @@ body{
     font-family: "Open Sans", sans-serif;
     overflow-x: hidden;
     background: inherit;
+    user-select: none;
     .container{
         display: flex;
         position: fixed;
@@ -38,7 +39,7 @@ body{
     }
 
     header{
-        z-index: 5;
+        z-index: 50;
         position: fixed;
         width: 100%;
         background: inherit;
@@ -279,7 +280,6 @@ body{
             flex-direction: row;
             justify-content: left;
             align-items: center;
-           // background-color: rgba(58, 58, 58, 0.829);
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -299,12 +299,12 @@ body{
                 margin: 50px;
                 padding: 0;
                 
-                width: 250px;
+            
                 height: max-content;
                 transform: translateX(0px);
                
                 .review-text{
-                    width: 90%;
+                    width: 100%;
                     display: flex;
                     flex-direction: column;
                     justify-content: left;
@@ -319,7 +319,7 @@ body{
                         color: rgb(0, 0, 0);
                         font-weight: 900;
                         height: 100%;
-            
+                        text-align: center;
                     }
                     :nth-child(3){
                         color: gray;
@@ -344,7 +344,7 @@ body{
                         align-items: center;
                         gap: 5px;
                         svg{
-                            color: rgb(255, 166, 0);
+                            color: rgb(255, 255, 255);
                         }
                     
                     }
@@ -358,13 +358,12 @@ body{
                     margin: 0;
                     padding: 0;
                     object-fit: cover;
-                    width: 250px;
-                    height: 200px;
                     border-radius: 20px;
                     overflow: hidden;
 
                     img{
-                        width: 100%;
+                        width: 300;
+                        height: 400px;
                         
                         object-fit: cover;
                         border-radius: 2rem;
@@ -372,33 +371,42 @@ body{
                     }
                 }
                 @media screen and (min-width: 768px) {
-                    width: 300px;
-                    height: 400px;
-                    padding-inline: 50px;
-                    color: #eaeaea;
-                    margin: 50px;
+                    margin-inline: 50px;
+                    position: relative;
                     .review-text{
+                        position: absolute;
                         color: #eaeaea;
                         width: 100%;
-                        background-color: aqua;
+                        margin: 15px;
+                        :first-child{
+                            color: rgb(255, 255, 255);
+                            font-weight: 900;
+                            height: 100%;
+                
+                        }
                         :nth-child(3){
                             color: whitesmoke;
                             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+                            width: 100%;
                             font-weight: 200;
                             padding-bottom: 5px;
-                            font-size: 10px;
-                            
+                            font-size: 20px;
+                            text-shadow: #181818 2px;
+                            padding-inline: 10px;
+                        }
+                        p{
+                            margin: 0;
+                            padding: 0;
+                            text-overflow: ellipsis;
+                            z-index: -1;
                         }
                     }
                     .review-author{
-                        position: absolute;
-                        height: 300px;
                         img{
-                            position: absolute;
-                            height: 100%;
-                            width: 100%;
-
+                            height: 450px;
+                            width: 300px;
+                            object-fit: cover;
+                            filter: brightness(0.5);
                         }
                     }
                 }
@@ -406,11 +414,15 @@ body{
         
     }
 
+
+
     .articles{
         display: flex;
         flex-direction: row;
         overflow: auto;
         gap: 30px;
+        
+
         .article{
             display: flex;
             flex-direction: column;
@@ -442,30 +454,34 @@ body{
 
     .service_carrousel{
         position: relative;
-        background-color: rgb(45, 45, 45);
         overflow-y: auto;
+        overflow-x: hidden;
         width: 100%;
         height: 100%;
         display: flex;
         align-content: start;
         background-color: #181818;
         margin-bottom: 100px;
-        .btns{
-            padding: 0px;
-            margin: 0px;
-            width: 100vw;
-            height: 100%;
-            position: absolute;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+    
+            
+            
+        
+        
+        .service_carrousel_container{
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            border: none;
-            border-style: none;
-            border-color: transparent;
-            z-index: 2;
+            justify-content: left;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: all 0.2s ease-in-out;
+            max-width: 800px;
+            position: relative;
             .btn-right{
                 height: 100%;
+                left: 0px;
+                position: absolute;
                 border-radius: 0px 0px 0px 0px;
                 background: inherit;
                 margin: 0px;
@@ -474,9 +490,11 @@ body{
                 //for safary
                 -webkit-backdrop-filter: blur(10px);
                 justify-content: center;
+                align-items: center;
+                align-content: center;
                 display: flex;
                 flex-direction: column;
-                z-index: -1;
+                z-index: 100;
                 svg{
                     background-color: #eaeaea;
                     width: 70px;
@@ -485,6 +503,7 @@ body{
             }
             .btn-left{
                 height: 100%;
+                position: absolute;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -501,23 +520,18 @@ body{
                     height: 70px;
                 }
             }
-        }
-        
-        .service_carrousel_container{
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-            overflow-y: auto;
-            
             .service_carrousel_item{
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+                max-width: 800px;
+                transition: all 0.2s ease-in-out;
                 .service_carrousel_text{
                     margin-inline: 20px;
                     color: white;
-                    z-index: 60;
+                    z-index: 150;
                 }
+                
             }
         }
     }
@@ -644,9 +658,19 @@ body{
         background-color: rgb(241, 241, 241);
         margin-inline: 0px;
         padding-inline: 0px;
-        padding-top: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding-bottom: 60px;
         text-decoration: none;
+        position: relative;
+        .ventouse{
+            width: 500px;
+            align-self: center;
+            justify-self: center;
+            position: absolute;
+            z-index: 10;
+        }
         a{
             :visited{
                 color: black;
@@ -661,9 +685,15 @@ body{
         .head{
             display: flex;
             align-items:center;
+            width: 100%;
+            max-width: 700px;
             padding: 0px;
+           
             margin-inline: 20px;
             justify-content: space-between;
+            z-index: 11;
+            position: absolute;
+            top: 0px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             h1{
                 letter-spacing: 0.1vw;
@@ -671,9 +701,17 @@ body{
             span{
                 color: grey;
             }
+            &.page{
+                position: relative;
+                margin-top: 150px;
+            }
+            &.second{
+                margin-top: 0px;
+            }
         }
         .list{
             display: flex;
+            position: relative;
             flex-direction: row;
             flex-wrap: nowrap;
             overflow-y: auto;
@@ -682,12 +720,18 @@ body{
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none;  /* Internet Explorer 10+ */
             padding-inline: 20px;
+            z-index: 11;
+            margin-top: 300px;
+            &.page{
+                margin-top: 0px;
+            }
             &::-webkit-scrollbar { /* WebKit */
                 width: 0;
                 height: 0;
             }
-            &.vertical{
-                flex-direction: column;
+            
+            :nth-child(2){
+                margin-top: 150px;
             }
             .article{
                 display: flex;
@@ -699,7 +743,11 @@ body{
                 background-color: white;
                 border-radius: 1.2rem;
                 padding: 5px;
-                
+                height: fit-content;
+                max-height: fit-content;
+                :nth-child(2){
+                    margin-top: 0px;
+                }
                 img{
                     border-radius: 1rem;
                 }
@@ -793,6 +841,13 @@ body{
                     border-radius: 0.5rem;
                 }
             }
+            &.vertical{
+                flex-direction: column;
+                margin-top: 0px;
+                :nth-child(2){
+                    margin-top: 0px;
+                }
+            }
         }
 
     }
@@ -804,9 +859,10 @@ body{
             padding: 0px;
             margin: 0px;
             width: 100%;
+            height: 100vh;
             position: fixed;
             z-index: 1;
-            object-fit: contain;
+            object-fit: cover;
             &::before{
                 content: " ";
                 position: absolute;

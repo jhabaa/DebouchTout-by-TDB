@@ -7,11 +7,11 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <main id="articles">
-            <section class="head">
+            <section class="head page">
                 <h1>Articles récents</h1>
                 <span class="see_more">Voir plus</span>
             </section>
-            <section class="list">
+            <section class="list page">
                 {% for item in articles[-3:] %}
                 <a class="article" href="{{url_for('article', id=item.id)}}">
                     <img src="/static/{{item.illustration}}" alt="">
@@ -31,7 +31,7 @@
                 </a>
                 {% endfor %}
             </section>
-            <section class="head">
+            <section class="head page second">
                 <h1>Tous les articles</h1>
             </section>
             <section class="list vertical">

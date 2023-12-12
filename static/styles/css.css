@@ -157,6 +157,7 @@ body .container-home {
   z-index: 3;
   justify-items: center;
   justify-content: center;
+  overflow-x: hidden;
   color: whitesmoke;
 }
 body .container-home.hide {
@@ -604,6 +605,7 @@ body #articles {
   padding-bottom: 60px;
   text-decoration: none;
   position: relative;
+  overflow-x: hidden;
 }
 body #articles .ventouse {
   width: 500px;
@@ -655,10 +657,10 @@ body #articles .list {
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-y: auto;
+  overflow-x: auto;
+  width: 100vw;
   gap: 20px;
   padding-bottom: 20px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
   padding-inline: 20px;
   z-index: 11;
   margin-top: 300px;

@@ -19,6 +19,7 @@
             </div>
            </section>
         <main id="articles">
+            <img src="/static/ventouse.png" alt="" class="ventouse">
             <section class="head">
                 <h1>Articles récents</h1>
                 <a href="{{url_for('articles')}}" class="see_more">Voir plus</a>
@@ -53,6 +54,7 @@
                     </svg>
                 </div>
              </div>
+
             <div class="service_carrousel_container" id="carrousel-1">
                  <!--right button-->
                 <div class="btn-right" id="btn-right">
@@ -68,6 +70,7 @@
                     </svg>
                 </div>
                 {% for service in services %}
+
                 <div class="service_carrousel_item">
                     <img src="/static/services/{{service["illustration"]}}">
                     <div class="service_carrousel_text">

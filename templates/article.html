@@ -6,42 +6,61 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <main id="details_article">
-            <img src="/static/{{article.illustration}}" alt="background" id="article_background">
+            <img src="/static/articles/{{article["illustration"]}}" alt="background" id="article_background">
             <div class="article">
                 <div class="fixed">
                     <div class="block"></div>
-                    <span class="category">{{article.category}}</span>
+                    <span class="category">{{article["category"]}}</span>
                 </div>
                 
                 <div class="rank">
                     <span class="rank_number">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-                            <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"/>
-                          </svg>
-                        {{article.note}}
+                        Vu {{article["seen"]}} fois
                     </span>
-                    <span class="days">{{article.date}}</span>
+                    <span class="days">{{article["date"]}}</span>
                 </div>
                 <div class="title">
-                    {{article.title}}
+                    {{article["title"]}}
                 </div>
                 <div class="intro">
-                    {{article.intro}}
+                    {{article["intro"]}}
                 </div>
                 <div class="content">
-                    {% for key, value in article.content.items() %}
-                        <span class="subtitle">{{key}}</span>
-                        <p class="text">{{value}}</p>
+			{% for bloc in article["content"].split("/bloc") %}
+			<p>
+                {% set parts = bloc.split("/title") %}
+                {% for part in parts %}
+
+                {% endfor %}
+                {% set head = parts[0] %}
+                {% set content = parts[1] %}
+                {% set subcontent = content.split("/subtitle") if "/subtitle" in content else [] %}
+                {% if head != "" %}
+                    <h2>{{head}}</h2>
+                {% endif %}
+                
+            
+                {% if subcontent %}
+                {# MARK : read the subcontent or print it as, if no subtitle #}
+                    {% for text in subcontent %}
+                     <span class="art_subcontent">{{text}}</span>
+                         
                     {% endfor %}
+                    {% else %}
+                    <span class="art_content">{{content}}</span>
+                   
+                {% endif%}
+			</p>	
+			{% endfor %}
                 </div>
             </div>
 
             <!--ADS-->
             <div class="ads">
-                <img src="/static/team.jpg" alt="" >
+                <img src="/static/offer/team.jpg" alt="" >
                 <span class="title">Problème toujours non résolu ?</span>
                 <p>
-                    Si vous soupçonnez des problèmes dans vos canalisations ou si vous souhaitez une inspection préventive, Debouch'tout dispose de l'expertise et de l'équipement nécessaires pour fournir un service d'inspection par caméra fiable et professionnel.
+                    Si vous soupçonnez des problèmes dans vos canalisations ou si vous souhaitez une inspection préventive, Debouch'tou dispose de l'expertise et de l'équipement nécessaires pour fournir un service d'inspection par caméra fiable et professionnel.
                     <br></br>
                     Investissez dans la santé de vos canalisations aujourd'hui pour éviter des problèmes coûteux demain !
                 </p>

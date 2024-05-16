@@ -1,8 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, Request
-import csv
-
+import mysql.connector
+import json as json
 app = Flask(__name__)
 
+#MysQL Config
+""" Database connexion """
+#app.config['MYSQL_HOST'] = 'localhost'
+#app.config['MYSQL_USER'] = 'root'
+#app.config['MYSQL_PASSWORD'] = 'HeanInformatique9164'
+#app.config['MYSQL_DB'] = 'deboucheur'
+app.config['UPLOAD_FOLDER'] = '/var/www/deboucheur/static/services'
+
+#mysql = MySQL(app)
+config = {
+            'user':'root',
+            'password':'hean2000',
+            'host':'127.0.0.1',
+            'database':'deboucheur',
+            'raise_on_warnings':True
+        }
+cnx = mysql.connector.connect(**config)
 #Object article
 class Article:
     def __init__(self,id, title, content, author, date, intro, category, illustration):
@@ -15,19 +32,6 @@ class Article:
         self.intro = intro
         self.category = category
         self.illustration = illustration
-
-#Object Service
-class Service:
-    def __init__(self, title, resume, illustration, content, faq) -> None:
-        self.id = id
-        self.title = title
-        self.resume = resume
-        self.illustration = illustration
-        self.content = content
-        self.faq = faq
-
-
-
 
 #List of articles
 articles_list = [
@@ -118,25 +122,34 @@ articles_list = [
 
 ]
 
-#store as csv file
-def articles_to_csv():
-    with open('articles.csv', mode='w+') as database:
-        csv_writer = csv.writer(database, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow(["identifiant","title", "content", "author", "date", "note","intro", "category", "illustration"])
-        for article in articles_list:
-            csv_writer.writerow([article.id, article.title, article.content, article.author, article.date, article.note, article.intro, article.category, article.illustration])
-        
+def get_services():
+    cnx.reconnect()
+    cur = cnx.cursor(dictionary=True)
+    cur.execute("SELECT * FROM deboucheur.service;")
+    output = cur.fetchall()
 
-def init_services_csv():
-    with open('services.csv', mode='w+') as database:
-        csv_writer = csv.writer(database, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        #header
-        csv_writer.writerow(['id','title', 'resume', 'illustration', 'content', 'faq'])
+    return output
 
+def get_lastarticles():
+    cnx.reconnect()
+    cur = cnx.cursor(dictionary=True)
+    cur.execute("SELECT * FROM deboucheur.article order by date desc;")
+    output = cur.fetchall()
+    return output
 
+def get_article(id):
+    cnx.reconnect()
+    cur = cnx.cursor(dictionary=True)
+    cur.execute(f"SELECT * FROM deboucheur.article where id={id};")
+    output = cur.fetchone()
+    return output
 
-articles_to_csv()
-init_services_csv()
+def get_service(id):
+    cnx.reconnect()
+    cur = cnx.cursor(dictionary=True)
+    cur.execute (f"SELECT * FROM deboucheur.service where id={id};")
+    output = cur.fetchone()
+    return output
 
 @app.route('/')
 def index():
@@ -144,19 +157,36 @@ def index():
 
 @app.route('/home')
 def home():
-    return render_template('index.html', articles=articles_list[-3:])
+    art = get_lastarticles()[:3]
+    serv = get_services()
+    return render_template('index.html', articles=art, services = serv)
 
 @app.route('/articles')
 def articles():
-    return render_template('articles.html', articles=articles_list)
+    return render_template('articles.html', articles=get_lastarticles())
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    serv = get_services()
+    return render_template('about.html', services = serv)
+
+@app.route('/about/<id>')
+def about_service(id):
+    s = get_service(id)
+    serv = get_services()
+    return render_template('about_service.html', services = serv, service = s)
 
 @app.route('/article/<id>')
 def article(id):
-    return render_template('article.html', article=next(filter(lambda x: x.id == int(id), articles_list), None))
+    cnx.reconnect()
+    arg=[int(id)]
+    cur = cnx.cursor(dictionary=True)
+    #Call Mysql procedure
+    cur.execute(f"call deboucheur.readed({id});")
+    
+    art = get_article(id)
+    cur.close()
+    return render_template('article.html', article=art)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")

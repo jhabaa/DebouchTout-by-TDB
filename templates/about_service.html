@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Details{% endblock %}
+{% block content %}
+    {{ super() }}
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <main id="details_article">
+           
+            <div class="article">
+                <div class="title">
+                    {{service["title"]}}
+                </div>
+		<div class="fixed">
+                    <div class="block"></div>
+		    <img src="/static/services/{{service.illustration}}" style="width:80vw;" />
+                 </div>
+                
+                <div class="intro">
+                    {{service["resume"]}}
+                </div>
+                <div class="content">
+			{{service.content}}
+                </div>
+            </div>
+
+            <!--ADS-->
+            <div class="ads">
+                <img src="/static/offer/team.jpg" alt="" >
+                <span class="title">Nous pouvons vous aider ?</span>
+                <p>
+                    Si vous soupçonnez des problèmes dans vos canalisations ou si vous souhaitez une inspection préventive, Debouch'tout dispose de l'expertise et de l'équipement nécessaires pour fournir un service d'inspection par caméra fiable et professionnel.
+                    <br></br>
+                    Investissez dans la santé de vos canalisations aujourd'hui pour éviter des problèmes coûteux demain !
+                </p>
+            </div>
+        </main>
+{% endblock %}

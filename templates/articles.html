@@ -9,45 +9,39 @@
         <main id="articles">
             <section class="head page">
                 <h1>Articles récents</h1>
-                <span class="see_more">Voir plus</span>
             </section>
             <section class="list page">
-                {% for item in articles[-3:] %}
-                <a class="article" href="{{url_for('article', id=item.id)}}">
-                    <img src="/static/{{item.illustration}}" alt="">
+                {% for article in articles[:3] %}
+                <a class="article" href="{{url_for('article', id=article["id"])}}">
+                    <img src="/static/articles/{{article["illustration"]}}" alt="">
+
                     <div class="rank">
                         <span class="rank_number">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
-                                <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"/>
-                              </svg>
-                            {{item.note}}
+                            {{article["seen"]}}
                         </span>
-                        <span class="days">{{item.date}}</span>
+                        <span class="days">{{article["date"]}}</span>
                     </div>
                     <div class="title">
-                        {{ item.title }}
+                        {{ article["title"] }}
                     </div>
-                    <span class="category">{{ item.category }}</span>
+                    <span class="category">{{ article["category"] }}</span>
                 </a>
                 {% endfor %}
             </section>
             <section class="head page second">
                 <h1>Tous les articles</h1>
             </section>
-            <section class="list vertical">
-                {% for item in articles %}
-                    <a href="{{url_for('article', id=item.id)}}" class="article horizontal">
-                        <img src="/static/{{item.illustration}}" alt="">
+            <section class="all_articles">
+                {% for article in articles %}
+                    <a href="{{url_for('article', id=article["id"])}}" class="article_card">
+                        <img src="/static/articles/{{article["illustration"]}}" alt="">
                         <div class="infos">
                             <div class="datas">
-                                <span>{{item.category}}</span>
-                                <span>{{item.date}}</span>
+                                <span>{{article["category"]}}</span>
+                                
                             </div>
-                            <span class="title">{{item.title}}</span>
-                            <div class="author">
-                                <img src="/static/fond.jpg" alt="" class="author_pict">
-                                <span class="author_name">{{item.author}}</span>
-                            </div>
+                            <div class="title">{{article["title"]}}</div>
+                            
                         </div>
                     </a>
                 {% endfor %}

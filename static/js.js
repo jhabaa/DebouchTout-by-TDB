@@ -14,7 +14,10 @@ let service_carrousel = document.querySelector('.service_carrousel');
 let carrousel_right_btn = document.querySelector('#btn-right');
 let carrousel_left_btn = document.querySelector('#btn-left');
 let carrousel = document.querySelector('#carrousel-1');
-
+let call_btn = document.querySelector('.call_action');
+let current_service_resume = document.querySelector('#current_service_resume');
+let current_service_title = document.querySelector('#current_service_title');
+let mini_right_btn = document.querySelector('#mini_right_btn');
 //INIT AOS
 AOS.init(); 
 
@@ -30,10 +33,14 @@ console.log("Values are: ", current_page, window.innerWidth);
 var index = 0;
 function moveCarrouselLeft() {
     carrousel.appendChild(services_cards[index]);
+    //set current service title and resume
+    current_service_title.innerHTML = services_cards[index].children[1].children[0].innerHTML;
+    current_service_resume.innerHTML = services_cards[index].children[1].children[1].innerHTML;
     index ++;
     if (index == services_cards.length) {
         index = 0;
     }
+    
 }
 function moveCarrouselRight() {
     if (index <= 0) {
@@ -41,6 +48,9 @@ function moveCarrouselRight() {
     }
     console.log(index);
     carrousel.insertBefore(services_cards[index], services_cards[0]);
+    //set current service title and resume
+    current_service_title.innerHTML = services_cards[index].children[1].children[0].innerHTML;
+    current_service_resume.innerHTML = services_cards[index].children[1].children[1].innerHTML;
     index --;
     
 }
@@ -67,6 +77,11 @@ switch (current_page) {
             //console.log(services_index_show);
             //add last element to the beginning
             //let removedNode = carrousel.removeChild(services_cards[0]);
+            //set default values in carrousel
+            
+            moveCarrouselLeft();
+        });
+        mini_right_btn.addEventListener('click', function () {
             moveCarrouselLeft();
         });
         carrousel_right_btn.addEventListener('click', function () {
@@ -76,7 +91,8 @@ switch (current_page) {
             //let removedNode = carrousel.removeChild(services_cards[0]);
             moveCarrouselRight();
         });
-        
+            current_service_title.innerHTML = services_cards[0].children[1].children[0].innerHTML;
+            current_service_resume.innerHTML = services_cards[0].children[1].children[1].innerHTML;
         //MARK: - Automatic carrousel every 5 seconds
         setInterval(function () {
             moveCarrouselLeft();
@@ -85,17 +101,7 @@ switch (current_page) {
             item.classList.color = "white";
         });
         //always move reviews to the left
-//move cards to the left in async
-let cardWidth = reviews[0].offsetWidth;
-anime({
-    targets: reviews,
-    translateX: ((window.innerWidth / cardWidth) + ((cardWidth * reviews.length) - (window.innerWidth/cardWidth)) - window.innerWidth) * -1,
-    loop: true,
-    //delay: anime.stagger(100),
-    duration: 50000,
-    easing: 'easeInOutSine',
-    direction: 'alternate',
-});
+
         break;
     case "articles":
         navBarOpacity.style.opacity = 0.6;
@@ -125,6 +131,11 @@ anime({
     //Output scrollY value
 window.onscroll = function () {
     console.log(scrollY);
+    //change call_btn width
+    var targetWidth = ((scrollY * 170) / 500)
+    call_btn.style.width = targetWidth > 170 ? 170 + "px" : targetWidth + "px";
+
+
     if (current_page == "home") {
         // Change navbar opacity
         navBarOpacity.style.opacity = scrollY / 100;

@@ -6,61 +6,54 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <main id="about">
-            <img src="/static/team.jpg" alt="background">
+            <img src="/static/offer/team.jpg" alt="background"/>
             <span class="head">A propos de nos services</span>
             <p class="bio">
                 Chez Debouch'tou, nous sommes fiers d'offir un service de débouchage des canalisations exceptionnel à Bruxelles et dans le Brabant Wallon. Nous sommes une équipe de plombiers professionnels et expérimentés qui sont prêts à vous aider à résoudre vos problèmes de canalisations. Nous sommes disponibles 24h/24 et 7j/7 pour vous aider à résoudre vos problèmes de canalisations.
                 <br></br>
                 Notre équipe dévouée de professionnels est équipée des outils les plus avancés et des compétences necessaires pour résoudre rapidement et efficacement tout problème de canalisations, qu'il s'agisse d'obstructions mineurees ou de problèmes plus complexes.
             </p>
-            <span class="subtitle">Ce que nous offrons</span>
+            <span class="head">Nos services</span>
+	    <div class="services">
+		    {% for service in services %}
+		    	<a href="{{url_for('about_service', id=service.id)}}">
+				<div class="service">
+					<img src="/static/services/{{service.illustration}}" class="illustration"/>
+					<div class="service_title">{{service.title}}</div>
+					<div class="resume">{{service.resume}}
+						<a href="{{url_for('about_service', id=service.id)}}">Plus d'informations</a>
+					</div>
+					<img src="/static/services/{{service.icon}}" class="icon" />
+				</div>
+			</a>
+		    {% endfor %}
+	    </div>
+	    <span class="head">Nous offrons ...</span>
             <div class="our_services">
                 <div class="div1">
                     <span class="title">Expertise Technique:</span>
                     <span class="description">Nos techniciens hautement qualifiés sont formés pour diagnostiquer rapidement les problèmes et trouver des solutions durables.</span>
                 </div>
+		<img src="/static/offer/expertise.jpg"/>
                 <div class="div2">
                     <span class="title">Service rapide et fiable:</span>
                     <span class="description">Nous comprenons l'importance d'une intervention rapide. Notre équipe réagit promptement pour minimiser les perturbations dans votre quotidien.</span>
                 </div>
+		<img src="/static/offer/speed.jpg"/>
                 <div class="div3">
                     <span class="title">Transparence Tarifaire:</span>
                     <span class="description">Chez Debouch'tou, la transparence est notre priorité. Nos tarifs compétitifs sont basés sur la complexité du problème, et nous vous fournissons des devis clairs avant toute intervention.</span>
                 </div>
+		<img src="/static/offer/transparency.jpg"/>
                 <div class="div4">
                     <span class="title">Satisfaction Garantie:</span>
                     <span class="description">Nous nous engageons à la satisfaction totale de nos clients. Si le travail n'est pas à la hauteur de vos attentes, nous ferons tout en notre pouvoir pour le rectifier.</span>
                 </div>
-            </div>
-            <span class="subtitle">Nos services</span>
-            <div class="our_services">
-                <div class="div1">
-                    <span class="title">1. Débouchage des canalisations:</span> 
-                    <span class="description">Au cœur de notre engagement envers la satisfaction de nos clients se trouve notre service spécialisé de débouchage des canalisations. Chez Déboucheur Xpress, nous comprenons à quel point des canalisations obstruées peuvent causer des désagréments, et c'est pourquoi notre équipe dédiée se consacre à fournir des solutions rapides et efficaces.</span>
-                </div>
-                    <img src="/static/debouchage.jpg" alt="" class="div5">
-
-
-                <div class="div2">
-                    <span class="title">2. Inspection des canalisations:</span> 
-                    <span class="description">Au cœur de notre engagement envers la santé à long terme de vos canalisations se trouve notre service d'inspection avancée. Chez Debouch'tou, nous comprenons l'importance de détecter les problèmes de plomberie à un stade précoce, et c'est pourquoi nous offrons des services d'inspection des canalisations qui dépassent les attentes.</span>
-                </div>
-                    <img src="/static/inspection.jpg" alt="" class="div6">
-                <div class="div3">
-                    <span class="title">3. Réparation des fuites:</span> 
-                    <span class="description">Chez Debouch'tou, nous comprenons que les fuites d'eau peuvent causer des dégâts importants et nécessitent une intervention rapide et fiable. Notre service de réparation des fuites est conçu pour résoudre ces problèmes de manière efficace, tout en minimisant les inconvénients pour vous.</span>
-                </div>
-                <img src="/static/fuite.jpg" alt="" class="div7">
-                <div class="div4">
-                    <span class="title">4. Nettoyage des égouts:</span> 
-                    <span class="description">Chez Debouch'tou, nous comprenons l'importance cruciale du nettoyage régulier des égouts pour maintenir la santé de vos canalisations et assurer le bon fonctionnement de votre système de plomberie. Notre service de nettoyage des égouts est conçu pour répondre à ces besoins spécifiques, en garantissant une performance optimale de vos installations.</span>
-                </div>
-                <img src="/static/vidange.jpg" alt="" class="div8">
-                
+		<img src="/static/offer/satisfaction.jpg"/>
             </div>
 
             <!--Team-->
-            <span class="head">L'équipe</span>
+	    <span class="head">Notre Equipe</span>
             <div class="team">
                 <div class="member">
                     <img src="/static/avatar.jpg" alt="">
@@ -76,11 +69,6 @@
                     <img src="/static/avatar3.jpg" alt="">
                     <span class="name">Maxime Riet</span>
                     <span class="role">Plombier | DTO</span>
-                </div>
-                <div class="member">
-                    <img src="/static/fond.jpg" alt="">
-                    <span class="name">Jean Lombard</span>
-                    <span class="role">Plombier</span>
                 </div>
         </main>
 {% endblock %}

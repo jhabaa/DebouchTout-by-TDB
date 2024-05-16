@@ -38,7 +38,8 @@ body .fond img {
   background-color: rgb(63, 63, 255);
 }
 body header {
-  z-index: 200;
+  z-index: 50;
+
   position: fixed;
   width: 100%;
   background: inherit;
@@ -192,6 +193,7 @@ body .container-home {
   justify-items: center;
   justify-content: center;
   overflow: hidden;
+
   color: whitesmoke;
 }
 body .container-home.hide {
@@ -376,6 +378,7 @@ body #reviews .review .review-author {
 body #reviews .review .review-author img {
   width: 50px;
   height: 50px;
+
   object-fit: cover;
   border-radius: 2rem;
   z-index: 3;
@@ -415,6 +418,7 @@ body #reviews .review .review-author img {
   body #reviews .review .review-author img {
     height: 250px;
     width: 250px;
+
     object-fit: cover;
     filter: brightness(0.5);
   }
@@ -546,6 +550,7 @@ body .service_carrousel .service_infos .btns {
     position: relative;
   }
 }
+
 body .service_carrousel .service_carrousel_container .btn-right {
   height: 100%;
   left: 0px;
@@ -568,6 +573,7 @@ body .service_carrousel .service_carrousel_container .btn-right {
     display: flex;
   }
 }
+
 body .service_carrousel .service_carrousel_container .btn-right svg {
   background-color: #eaeaea;
   width: 70px;
@@ -576,6 +582,7 @@ body .service_carrousel .service_carrousel_container .btn-right svg {
 body .service_carrousel .service_carrousel_container .btn-left {
   height: 100%;
   position: absolute;
+
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -586,16 +593,14 @@ body .service_carrousel .service_carrousel_container .btn-left {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
 @media screen and (max-width: 768px) {
   body .service_carrousel .service_carrousel_container .btn-left {
     display: flex;
   }
 }
-body .service_carrousel .service_carrousel_container .btn-left svg {
-  background-color: #eaeaea;
-  width: 70px;
-  height: 70px;
-}
+
+
 @media screen and (min-width: 768px) {
   body .service_carrousel .service_carrousel_container .service_carrousel_item {
     display: flex;
@@ -637,6 +642,7 @@ body .service_carrousel .service_carrousel_container .btn-left svg {
     color: white;
     z-index: 150;
   }
+
 }
 body .contact {
   display: flex;
@@ -807,6 +813,7 @@ body #articles .list {
   flex-wrap: nowrap;
   overflow-y: auto;
   overflow-x: auto;
+
   width: 100%;
   gap: 20px;
   padding-bottom: 20px;
@@ -830,6 +837,7 @@ body #articles .list::-webkit-scrollbar { /* WebKit */
   width: 0;
   height: 0;
 }
+
 body #articles .list .article {
   display: flex;
   flex-direction: column;
@@ -1015,6 +1023,7 @@ body #articles .all_articles .article_card:hover img {
 }
 body #articles .all_articles .article_card:hover .infos {
   text-shadow: #181818 2px;
+
 }
 body #details_article {
   background-color: whitesmoke;
@@ -1031,6 +1040,7 @@ body #details_article #article_background {
   z-index: 1;
   object-fit: cover;
 }
+
 body #details_article .article {
   z-index: 2;
   position: relative;

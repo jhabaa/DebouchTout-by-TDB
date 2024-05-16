@@ -14,6 +14,7 @@
                 {% for article in articles[:3] %}
                 <a class="article" href="{{url_for('article', id=article["id"])}}">
                     <img src="/static/articles/{{article["illustration"]}}" alt="">
+
                     <div class="rank">
                         <span class="rank_number">
                             {{article["seen"]}}

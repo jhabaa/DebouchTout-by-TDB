@@ -4,6 +4,7 @@ import mysql.connector
 import json as json
 import os 
 
+
 app = Flask(__name__)
 load_env = load_dotenv()
 #MysQL Config

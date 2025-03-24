@@ -20,7 +20,7 @@ cnx = mysql.connector.connect(**config)
 def get_from_database(table:str, id:str = None, ordered8by:str=None ):
     cnx.reconnect()
     cur = cnx.cursor(dictionary=True) # prettier with dict
-    query = f"SELECT * FROM {config['database']}.{table} {"where id = " + id if id  else ""} {ordered8by if ordered8by else ""};"
+    query = f"""SELECT * FROM {config['database']}.{table} {"where id = " + id if id  else ""} {ordered8by if ordered8by else ""};"""
     cur.execute(query)
     output = cur.fetchall()
     return output

@@ -61,7 +61,7 @@ Welcome to **DebouchTout by TDB**, the blazing-fast web application dedicated to
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/YourOrganization/DebouchTout-by-TDB.git
+   git clone https://github.com/jhabaa/DebouchTout-by-TDB.git
    cd DebouchTout-by-TDB
    ```
 2. **Create & Activate a virtual Environment**

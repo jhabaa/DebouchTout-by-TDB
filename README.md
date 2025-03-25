@@ -1,9 +1,9 @@
 # DebouchTout-by-TDB
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PyPI version](https://badge.fury.io/py/debouchtout-tdb.svg)](https://pypi.org/project/debouchtout-tdb)
-[![GitHub stars](https://img.shields.io/github/stars/username/repo.svg)](https://github.com/username/repo/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/username/repo.svg)](https://github.com/username/repo/network)
-[![GitHub issues](https://img.shields.io/github/issues/username/repo.svg)](https://github.com/username/repo/issues)
+[![GitHub stars](https://img.shields.io/github/stars/jhabaa/DebouchTout-by-TDB.svg)](https://github.com/jhabaa/DebouchTout-by-TDB/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/jhabaa/DebouchTout-by-TDB.svg)](https://github.com/jhabaa/DebouchTout-by-TDB/network)
+[![GitHub issues](https://img.shields.io/github/issues/username/repo.svg)](https://github.com/jhabaa/DebouchTout-by-TDB/issues)
 
 [Démo live ici](https://debouchtoucom)
 
